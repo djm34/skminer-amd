@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{48591A4E-3F45-4750-97C3-C541743E7090}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Miner</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>
+    </LinkIncremental>
+    <OutDir>$(SolutionDir)bin\x64\$(Configuration)\</OutDir>
+    <IntDir>temp\x64\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\libraries\jansson-2.6\include;C:\libraries\ADL_SDK\include;C:\Program Files %28x86%29\AMD APP SDK\2.9\include;C:\Users\lrussell\AMD APP SDK\2.9\include\SDKUtil;C:\code\Miner\Miner\Source\hash;C:\libraries\OpenSSL-Win32\include;C:\libraries\boost_1_55_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\libraries\jansson-2.6\lib\x64;C:\Program Files %28x86%29\AMD APP SDK\2.9\lib\x86_64;C:\libraries\OpenSSL-Win32\lib\VC;C:\libraries\OpenSSL-Win32\lib;C:\libraries\OpenSSL-Win32\lib\VC\static;C:\libraries\boost_1_55_0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\libraries\nvapi-337;C:\code\Miner\Miner\Source;C:\libraries\ADL_SDK\include;C:\libraries\jansson-2.6\include;C:\Users\Liam\AMD APP SDK\2.9\include;C:\Users\Liam\AMD APP SDK\2.9\include\SDKUtil;C:\code\Miner\Miner\Source\hash;C:\libraries\OpenSSL-Win64\include;C:\libraries\boost_1_55_0;C:\Program Files %28x86%29\AMD APP SDK\2.9\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AssemblerListingLocation>Debug</AssemblerListingLocation>
+      <ProgramDataBaseFileName>$(SolutionDir)bin/x64/Debug/Miner.pdb</ProgramDataBaseFileName>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings>4005;4996</DisableSpecificWarnings>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\libraries\GLFW\lib\Debug\x64;C:\libraries\nvapi-337\amd64;C:\libraries\jansson-2.6\lib\x64;C:\Program Files %28x86%29\AMD APP SDK\2.9\lib\x86_64;C:\Users\Liam\AMD APP SDK\2.9\lib\x86_64;C:\libraries\OpenSSL-Win64;C:\libraries\OpenSSL-Win64\lib\VC\static;C:\libraries\OpenSSL-Win64\lib\VC;C:\libraries\OpenSSL-Win64\lib;C:\libraries\boost_1_55_0\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)bin/x64/Debug/Miner.lib</ImportLibrary>
+      <AdditionalDependencies>libeay32MD.lib;libeay32MDd.lib;libeay32MT.lib;libeay32MTd.lib;ssleay32MD.lib;ssleay32MDd.lib;ssleay32MT.lib;ssleay32MTd.lib;OpenCL.lib;glfw3.lib;opengl32.lib;glu32.lib;jansson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CudaVersions\ADL_SDK\include;C:\Program Files %28x86%29\AMD APP SDK\2.9\include;D:\CudaVersions\OpenSSL-Win32\include;D:\CudaVersions\jansson-2.7\src;D:\CudaVersions\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-D_WIN32_WINDOWS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\CudaVersions\jansson-2.7\build\lib\Release;D:\CudaVersions\curl-7.29.0\dlls;D:\CudaVersions\OpenSSL-Win32\lib\VC\static;C:\Program Files %28x86%29\AMD APP SDK\2.9\lib\x86;D:\CudaVersions\boost_1_56_0\lib32-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libeay32MT.lib;ssleay32MT.lib;OpenCL.lib;jansson.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CudaVersions\ADL_SDK\include;D:\CudaVersions\jansson-2.7\build\include;D:\CudaVersions\OpenSSL-Win64\include;C:\Program Files %28x86%29\AMD APP SDK\2.9\include;D:\CudaVersions\boost_1_56_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\CudaVersions\curl-7.29.0_x64\dlls;D:\CudaVersions\jansson-2.7\build\x64\Release;D:\CudaVersions\OpenSSL-Win64\lib\VC;C:\Program Files %28x86%29\AMD APP SDK\2.9\lib\x86_64;D:\CudaVersions\boost_1_56_0\lib64-msvc-12.0;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>jansson.lib;ssleay32MT.lib;libeay32MT.lib;OpenCl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\app\Application.cpp" />
+    <ClCompile Include="Source\app\main.cpp" />
+    <ClCompile Include="Source\compute\BaseComputeDevice.cpp" />
+    <ClCompile Include="Source\compute\CLDevice.cpp" />
+    <ClCompile Include="Source\compute\CLFuncs.cpp" />
+    <ClCompile Include="Source\compute\CLKernel.cpp" />
+    <ClCompile Include="source\compute\CLMemory.cpp" />
+    <ClCompile Include="Source\config\ConfigConnection.cpp" />
+    <ClCompile Include="Source\config\GPUSetting.cpp" />
+    <ClCompile Include="Source\config\RunOptions.cpp" />
+    <ClCompile Include="source\connections\ServerConnection.cpp" />
+    <ClCompile Include="source\connections\SKServerConnection.cpp" />
+    <ClCompile Include="source\data\MinerData.cpp" />
+    <ClCompile Include="source\data\SKMinerData.cpp" />
+    <ClCompile Include="Source\driver\ADL.cpp" />
+    <ClCompile Include="Source\gpu\ADLGPU.cpp" />
+    <ClCompile Include="Source\gpu\BaseGPU.cpp" />
+    <ClCompile Include="Source\gpu\GPUData.cpp" />
+    <ClCompile Include="Source\kernel\KernelFuncs.cpp" />
+    <ClCompile Include="source\threads\MinerThread.cpp" />
+    <ClCompile Include="source\threads\SKMinerThread.cpp" />
+    <ClCompile Include="Source\ui\Section.cpp" />
+    <ClCompile Include="Source\ui\UIData.cpp" />
+    <ClCompile Include="Source\utilities\JSONUtils.cpp" />
+    <ClCompile Include="Source\utilities\StringUtils.cpp" />
+    <ClCompile Include="source\zcore\CBlock.cpp" />
+    <ClCompile Include="source\zcore\Connection.cpp" />
+    <ClCompile Include="source\zcore\DDOS_Filter.cpp" />
+    <ClCompile Include="source\zcore\DDOS_Score.cpp" />
+    <ClCompile Include="source\zcore\Inbound.cpp" />
+    <ClCompile Include="source\zcore\Miner.cpp" />
+    <ClCompile Include="source\zcore\Outbound.cpp" />
+    <ClCompile Include="source\zcore\Packet.cpp" />
+    <ClCompile Include="source\zcore\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\app\Application.h" />
+    <ClInclude Include="source\app\main.h" />
+    <ClInclude Include="source\base\IPrototype.h" />
+    <ClInclude Include="Source\compute\BaseComputeDevice.h" />
+    <ClInclude Include="Source\compute\CLDevice.h" />
+    <ClInclude Include="Source\compute\CLFuncs.h" />
+    <ClInclude Include="Source\compute\CLKernel.h" />
+    <ClInclude Include="source\compute\CLMemory.h" />
+    <ClInclude Include="Source\compute\CLStructs.h" />
+    <ClInclude Include="Source\config\ConfigConnection.h" />
+    <ClInclude Include="Source\config\GPUSetting.h" />
+    <ClInclude Include="Source\config\RunOptions.h" />
+    <ClInclude Include="source\connections\ServerConnection.h" />
+    <ClInclude Include="source\connections\SKServerConnection.h" />
+    <ClInclude Include="source\data\MinerData.h" />
+    <ClInclude Include="source\data\SKMinerData.h" />
+    <ClInclude Include="Source\driver\ADL.h" />
+    <ClInclude Include="Source\driver\ADLFuncs.h" />
+    <ClInclude Include="Source\gpu\ADLGPU.h" />
+    <ClInclude Include="Source\gpu\BaseGPU.h" />
+    <ClInclude Include="Source\gpu\GPUData.h" />
+    <ClInclude Include="source\hash\brg_endian.h" />
+    <ClInclude Include="source\hash\brg_types.h" />
+    <ClInclude Include="source\hash\skein_port.h" />
+    <ClInclude Include="source\hash\uint1024.h" />
+    <ClInclude Include="Source\kernel\KernelFuncs.h" />
+    <ClInclude Include="source\threads\MinerThread.h" />
+    <ClInclude Include="source\threads\SKMinerThread.h" />
+    <ClInclude Include="Source\ui\Section.h" />
+    <ClInclude Include="Source\ui\UIData.h" />
+    <ClInclude Include="Source\utilities\JSONUtils.h" />
+    <ClInclude Include="Source\utilities\StringUtils.h" />
+    <ClInclude Include="source\zcore\bignum.h" />
+    <ClInclude Include="source\zcore\CBlock.h" />
+    <ClInclude Include="source\zcore\Connection.h" />
+    <ClInclude Include="source\zcore\DDOS_Filter.h" />
+    <ClInclude Include="source\zcore\DDOS_Score.h" />
+    <ClInclude Include="source\zcore\Inbound.h" />
+    <ClInclude Include="source\zcore\Miner.h" />
+    <ClInclude Include="source\zcore\Outbound.h" />
+    <ClInclude Include="source\zcore\Packet.h" />
+    <ClInclude Include="source\zcore\Timer.h" />
+    <ClInclude Include="source\zcore\types.h" />
+    <ClInclude Include="source\zcore\util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\kernel\sk1024_djm.cl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

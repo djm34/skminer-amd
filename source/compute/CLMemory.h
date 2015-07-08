@@ -1,0 +1,73 @@
+////////////////////////////////////////////////
+// File:	CLMemory.h
+//
+// Author:	Liam Russell (A.K.A. BitSlapper)
+//
+// Copyright: 2014-2015 Liam Russell
+//
+// License:	GNU GENERAL PUBLIC LICENSE V3
+//////////////////////////////////////////////
+
+#ifndef _CLMEMORY_H_
+#define _CLMEMORY_H_
+
+#include <CL/cl.hpp>
+#include "../base/IPrototype.h"
+
+
+class CLMemory : public IPrototype
+{
+private:
+
+	cl_mem m_clMemBuffer;
+	cl_mem_flags m_clmfType;
+	size_t m_stBufferSize;
+	std::string m_szBufferName;
+	void* m_pEmptyBuffer;
+
+public:
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Constructor
+	///////////////////////////////////////////////////////////////////////////////
+	CLMemory();
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Copy Constructor
+	///////////////////////////////////////////////////////////////////////////////
+	CLMemory(const CLMemory& memory);
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Assignment Operator
+	///////////////////////////////////////////////////////////////////////////////
+	CLMemory& operator=(const CLMemory& memory);
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Destructor
+	///////////////////////////////////////////////////////////////////////////////
+	~CLMemory();
+
+	CLMemory* Clone();
+	CLMemory* DeepCopy();
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Accessors
+	///////////////////////////////////////////////////////////////////////////////
+	const cl_mem& GetBuffer()			const	{	return this->m_clMemBuffer;		}
+	const cl_mem_flags& GetBufferType() const	{	return this->m_clmfType;		}
+	const size_t& GetBufferSize()		const	{	return this->m_stBufferSize;	}
+	const std::string& GetBufferName()	const	{	return this->m_szBufferName;	}
+	void* GetEmptyBuffer()				const	{	return this->m_pEmptyBuffer;	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	//Mutators
+	///////////////////////////////////////////////////////////////////////////////
+	void SetBuffer(const cl_mem& buffer)				{	this->m_clMemBuffer = buffer;			}
+	void SetBufferType(const cl_mem_flags& bufferType)	{	this->m_clmfType = bufferType;			}
+	void SetBufferSize(const size_t& bufferSize)		{	this->m_stBufferSize = bufferSize;		}
+	void SetBufferName(const std::string& bufferName)	{	this->m_szBufferName = bufferName;		}
+	void SetEmptyBuffer(void* pEmptyBuffer)				{	this->m_pEmptyBuffer = pEmptyBuffer;	}
+};
+
+
+#endif //_CLMEMORY_H_
