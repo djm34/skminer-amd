@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 *.dirstamp
 *.Po
+resources/config/miner.conf_old
