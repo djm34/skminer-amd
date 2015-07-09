@@ -143,11 +143,11 @@ ADLGPU* ADLGPU::DeepCopy()
 	int level = this->m_lpOdParameters.iNumberOfPerformanceLevels - 1;
 	size_t perfLevelSize = sizeof(ADLODPerformanceLevels)+level * sizeof(ADLODPerformanceLevel);
 
-	ADLODPerformanceLevels* pDefPerfLev = (ADLODPerformanceLevels *)malloc(perfLevelSize);
-	pDefPerfLev->iSize = (int)perfLevelSize;
-	memcpy(pDefPerfLev, this->m_pDefPerfLev, perfLevelSize);
+//	ADLODPerformanceLevels* pDefPerfLev = (ADLODPerformanceLevels *)malloc(perfLevelSize);
+//	pDefPerfLev->iSize = (int)perfLevelSize;
+//	memcpy(pDefPerfLev, this->m_pDefPerfLev, perfLevelSize);
 
-	pADLGPU->SetADLODPerformanceLevels(pDefPerfLev);
+//	pADLGPU->SetADLODPerformanceLevels(pDefPerfLev);
 
 	pADLGPU->SetADLFanSpeedInfo(this->m_lpFanSpeedInfo);
 	pADLGPU->SetADLFanSpeedValue(this->m_lpFanSpeedValue);
