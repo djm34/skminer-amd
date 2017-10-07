@@ -27,6 +27,8 @@ class MinerData : public IPrototype
 
 protected:
 
+
+	unsigned int m_unBits;
 	Core::CBlock* m_pBLOCK;
 	GPUData* m_pGPUData;	
 
@@ -58,12 +60,14 @@ public:
 	///////////////////////////////////////////////////////////////////////////////
 	//Accessors
 	///////////////////////////////////////////////////////////////////////////////
+	unsigned int		GetBits()		const		{ return this->m_unBits;			}
 	Core::CBlock*		GetBlock()		const		{ return this->m_pBLOCK;			}
 	GPUData*			GetGPUData()	const		{ return this->m_pGPUData;			}
 
 	///////////////////////////////////////////////////////////////////////////////
 	//Mutators
 	///////////////////////////////////////////////////////////////////////////////
+	void	SetBits(unsigned int m_unBits)			{	this->m_unBits = m_unBits;		}
 	void	SetBlock(Core::CBlock* pBlock)			{   this->m_pBLOCK = pBlock;		}
 	void	SetGPUData(GPUData* pGPUData)			{	this->m_pGPUData = pGPUData;	}
 

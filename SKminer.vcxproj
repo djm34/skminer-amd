@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{895EECBB-B93C-4103-ADD3-3469E6EB0854}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\DevLib\boost_1_63_0\;$(CUDA_PATH)\include;D:\DevLib\OpenSSL-Win64\include;$(ProjectDir)\source\jansson;$(ProjectDir)\..\cpprestsdk-master\Release\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>D:\DevLib\boost_1_63_0\stage\lib64;D:\DevLib\OpenSSL-Win64\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\DevLib\boost_1_63_0\;D:\DevLib\OpenSSL-Win64\include;$(ProjectDir)\source\jansson;$(CUDA_PATH)\include;$(VC_IncludePath);$(WindowsSdk_71A_IncludePath)</IncludePath>
+    <LibraryPath>D:\DevLib\boost_1_63_0\stage\lib64;D:\DevLib\OpenSSL-Win64\lib;D:\DevLib\OpenSSL-Win64\lib\VC;$(CUDA_PATH)\lib\x64;$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/D "HAVE_STDINT_H" %(AdditionalOptions)</AdditionalOptions>
+      <MinimalRebuild>true</MinimalRebuild>
+    </ClCompile>
+    <Link />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="source\app\Application.cpp" />
+    <ClCompile Include="source\app\main.cpp" />
+    <ClCompile Include="source\compute\BaseComputeDevice.cpp" />
+    <ClCompile Include="source\compute\CLDevice.cpp" />
+    <ClCompile Include="source\compute\CLFuncs.cpp" />
+    <ClCompile Include="source\compute\CLKernel.cpp" />
+    <ClCompile Include="source\compute\CLMemory.cpp" />
+    <ClCompile Include="source\config\ConfigConnection.cpp" />
+    <ClCompile Include="source\config\GPUSetting.cpp" />
+    <ClCompile Include="source\config\RunOptions.cpp" />
+    <ClCompile Include="source\connections\ServerConnection.cpp" />
+    <ClCompile Include="source\connections\SKServerConnection.cpp" />
+    <ClCompile Include="source\data\MinerData.cpp" />
+    <ClCompile Include="source\data\SKMinerData.cpp" />
+    <ClCompile Include="source\driver\ADL.cpp" />
+    <ClCompile Include="source\gpu\ADLGPU.cpp" />
+    <ClCompile Include="source\gpu\BaseGPU.cpp" />
+    <ClCompile Include="source\gpu\GPUData.cpp" />
+    <ClCompile Include="source\jansson\dump.c" />
+    <ClCompile Include="source\jansson\error.c" />
+    <ClCompile Include="source\jansson\hashtable.c" />
+    <ClCompile Include="source\jansson\hashtable_seed.c" />
+    <ClCompile Include="source\jansson\load.c" />
+    <ClCompile Include="source\jansson\memory.c" />
+    <ClCompile Include="source\jansson\pack_unpack.c" />
+    <ClCompile Include="source\jansson\strbuffer.c" />
+    <ClCompile Include="source\jansson\strconv.c" />
+    <ClCompile Include="source\jansson\utf.c" />
+    <ClCompile Include="source\jansson\value.c" />
+    <ClCompile Include="source\kernel\KernelFuncs.cpp" />
+    <ClCompile Include="source\threads\MinerThread.cpp" />
+    <ClCompile Include="source\threads\SKMinerThread.cpp" />
+    <ClCompile Include="source\ui\Section.cpp" />
+    <ClCompile Include="source\ui\UIData.cpp" />
+    <ClCompile Include="source\utilities\JSONUtils.cpp" />
+    <ClCompile Include="source\utilities\StringUtils.cpp" />
+    <ClCompile Include="source\zcore\CBlock.cpp" />
+    <ClCompile Include="source\zcore\Connection.cpp" />
+    <ClCompile Include="source\zcore\DDOS_Filter.cpp" />
+    <ClCompile Include="source\zcore\DDOS_Score.cpp" />
+    <ClCompile Include="source\zcore\Inbound.cpp" />
+    <ClCompile Include="source\zcore\Miner.cpp" />
+    <ClCompile Include="source\zcore\Outbound.cpp" />
+    <ClCompile Include="source\zcore\Packet.cpp" />
+    <ClCompile Include="source\zcore\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\adl_sdk\adl_defines.h" />
+    <ClInclude Include="source\adl_sdk\adl_sdk.h" />
+    <ClInclude Include="source\adl_sdk\adl_structures.h" />
+    <ClInclude Include="source\app\Application.h" />
+    <ClInclude Include="source\app\main.h" />
+    <ClInclude Include="source\base\IPrototype.h" />
+    <ClInclude Include="source\compute\BaseComputeDevice.h" />
+    <ClInclude Include="source\compute\CLDevice.h" />
+    <ClInclude Include="source\compute\CLFuncs.h" />
+    <ClInclude Include="source\compute\CLKernel.h" />
+    <ClInclude Include="source\compute\CLMemory.h" />
+    <ClInclude Include="source\compute\CLStructs.h" />
+    <ClInclude Include="source\config\ConfigConnection.h" />
+    <ClInclude Include="source\config\GPUSetting.h" />
+    <ClInclude Include="source\config\RunOptions.h" />
+    <ClInclude Include="source\connections\ServerConnection.h" />
+    <ClInclude Include="source\connections\SKServerConnection.h" />
+    <ClInclude Include="source\data\MinerData.h" />
+    <ClInclude Include="source\data\SKMinerData.h" />
+    <ClInclude Include="source\driver\ADL.h" />
+    <ClInclude Include="source\driver\ADLFuncs.h" />
+    <ClInclude Include="source\gpu\ADLGPU.h" />
+    <ClInclude Include="source\gpu\BaseGPU.h" />
+    <ClInclude Include="source\gpu\GPUData.h" />
+    <ClInclude Include="source\hash\brg_endian.h" />
+    <ClInclude Include="source\hash\brg_types.h" />
+    <ClInclude Include="source\hash\skein_port.h" />
+    <ClInclude Include="source\hash\uint1024.h" />
+    <ClInclude Include="source\jansson\hashtable.h" />
+    <ClInclude Include="source\jansson\jansson.h" />
+    <ClInclude Include="source\jansson\jansson_config.h" />
+    <ClInclude Include="source\jansson\jansson_private.h" />
+    <ClInclude Include="source\jansson\jansson_private_config.h" />
+    <ClInclude Include="source\jansson\lookup3.h" />
+    <ClInclude Include="source\jansson\strbuffer.h" />
+    <ClInclude Include="source\jansson\utf.h" />
+    <ClInclude Include="source\json_spirit\json_spirit.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_error_position.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_reader.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_reader_template.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_stream_reader.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_utils.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_value.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_writer.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_writer_options.h" />
+    <ClInclude Include="source\json_spirit\json_spirit_writer_template.h" />
+    <ClInclude Include="source\kernel\KernelFuncs.h" />
+    <ClInclude Include="source\threads\MinerThread.h" />
+    <ClInclude Include="source\threads\SKMinerThread.h" />
+    <ClInclude Include="source\ui\Section.h" />
+    <ClInclude Include="source\ui\UIData.h" />
+    <ClInclude Include="source\utilities\JSONUtils.h" />
+    <ClInclude Include="source\utilities\StringUtils.h" />
+    <ClInclude Include="source\zcore\bignum.h" />
+    <ClInclude Include="source\zcore\CBlock.h" />
+    <ClInclude Include="source\zcore\Connection.h" />
+    <ClInclude Include="source\zcore\DDOS_Filter.h" />
+    <ClInclude Include="source\zcore\DDOS_Score.h" />
+    <ClInclude Include="source\zcore\Inbound.h" />
+    <ClInclude Include="source\zcore\Miner.h" />
+    <ClInclude Include="source\zcore\Outbound.h" />
+    <ClInclude Include="source\zcore\Packet.h" />
+    <ClInclude Include="source\zcore\Timer.h" />
+    <ClInclude Include="source\zcore\types.h" />
+    <ClInclude Include="source\zcore\util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ui\scripts\jquery-ui-1.11.2-redmond\index.html" />
+    <None Include="resources\ui\SKMinerGUI.html" />
+    <None Include="source\jansson\jansson.def" />
+    <None Include="source\jansson\jansson_config.h.in" />
+    <None Include="source\jansson\Makefile.am" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

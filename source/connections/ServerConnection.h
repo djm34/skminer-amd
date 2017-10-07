@@ -30,7 +30,7 @@ protected:
 	std::vector<MinerThread*> m_vecTHREADS;
 	LLP::Thread_t m_thTHREAD;
 	LLP::Timer    m_tTIMER;
-	std::string   m_szIP, m_szPORT;
+	std::string   m_szIP, m_szPORT, m_szLogin;
 public:
 
 	ServerConnection();

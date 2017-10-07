@@ -39,6 +39,28 @@ namespace LLP
 	{
 	}
 
+	bool Miner::Login(std::string strAccountName, int nTimeout)
+	{
+		Packet* PACKET = new Packet();
+		PACKET->SetHeader(LOGIN);
+
+		PACKET->SetData(std::vector<unsigned char>(strAccountName.begin(), strAccountName.end()));
+
+
+		PACKET->SetLength(PACKET->GetData().size());
+
+		this->WritePacket(PACKET);
+		delete(PACKET);
+
+		Packet RESPONSE = ReadNextPacket(nTimeout);
+
+		if (RESPONSE.IsNull())
+			return false;
+
+		ResetPacket();
+
+		return RESPONSE.GetHeader() == LOGIN_SUCCESS;
+	}
 
 	void Miner::SetChannel(unsigned int nChannel)
 	{
@@ -50,6 +72,54 @@ namespace LLP
 		this->WritePacket(packet);
 
 		delete(packet);
+	}
+
+	Core::PoolWork *Miner::WaitWorkUpdate(int nTimeout)
+	{
+		Packet RESPONSE = ReadNextPacket(nTimeout);
+
+		if (RESPONSE.IsNull() || RESPONSE.GetHeader() != BLOCK_DATA)
+			return NULL;
+
+		Core::PoolWork *pWork = new Core::PoolWork();
+
+		std::vector<unsigned char> data = RESPONSE.GetData();
+
+		pWork->m_pBLOCK = DeserializeBlock(std::vector<unsigned char>(data.begin() + 4, data.end()));
+
+		pWork->m_unBits = bytes2uint(RESPONSE.GetData());	//pool variant
+		//pWork->m_unBits = pWork->m_pBLOCK->GetBits();		//solo variant
+
+		ResetPacket();
+
+		return pWork;
+	}
+
+	Core::PoolWork *Miner::RequestWork(int nTimeout)
+	{
+		Packet* packet = new Packet();
+		packet->SetHeader(GET_BLOCK);
+		this->WritePacket(packet);
+		delete(packet);
+
+
+		Packet RESPONSE = ReadNextPacket(nTimeout);
+
+		if (RESPONSE.IsNull())
+			return NULL;
+
+		Core::PoolWork *pWork = new Core::PoolWork();
+
+		std::vector<unsigned char> data = RESPONSE.GetData();
+
+		pWork->m_pBLOCK = DeserializeBlock(std::vector<unsigned char>(data.begin() + 4, data.end()));
+
+		pWork->m_unBits = bytes2uint(RESPONSE.GetData());	//pool variant
+		//pWork->m_unBits = pWork->m_pBLOCK->GetBits();		//solo variant
+		
+		ResetPacket();
+
+		return pWork;
 	}
 
 	Core::CBlock* Miner::GetBlock(int nTimeout)

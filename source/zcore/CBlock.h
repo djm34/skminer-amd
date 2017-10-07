@@ -19,6 +19,22 @@
 
 namespace Core
 {
+	class CBlock;
+
+	/*
+	dirty and ugly. PoC purpose only
+	*/
+	class PoolWork
+	{
+	public:
+		CBlock* m_pBLOCK;
+		unsigned int m_unBits;
+	};
+
+	/** Determines the Decimal of nBits per Channel for a decent "Frame of Reference".
+	Has no functionality in Network Operation. **/
+	double GetDifficulty(unsigned int nBits, int nChannel = 2);
+
 	class CBlock
 	{
 	private:

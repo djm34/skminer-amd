@@ -140,8 +140,14 @@ bool sk1024_kernel_djm2(MinerData* pMinerData)
 
 	free(SkeinC);
 
+	std::string strKernelName = "sk1024";
+#ifdef _WIN32
+	//force terminating null byte. otherwise fails to find kernel on windows
+	strKernelName.resize(7);
+#endif
+
 	cl_int error = CL_SUCCESS;
-	CLKernel* skeinProcess = clDevice->GetKernel("sk1024");
+	CLKernel* skeinProcess = clDevice->GetKernel(strKernelName);
 	size_t globalSize = 8192;
 	size_t localSize = 128;
 	size_t buffSize = 0;
