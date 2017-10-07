@@ -40,10 +40,15 @@ namespace LLP
 		enum
 		{
 			//DATA PACKETS
-			BLOCK_DATA   = 0,
+			BLOCK_DATA = 0,
 			SUBMIT_BLOCK = 1,
 			BLOCK_HEIGHT = 2,
-			SET_CHANNEL  = 3,
+			SET_CHANNEL = 3,
+
+			//POOL RELATED
+			LOGIN = 8,
+			LOGIN_SUCCESS = 134,
+			LOGIN_FAIL = 135,
 					
 			//REQUEST PACKETS
 			GET_BLOCK    = 129,
@@ -64,8 +69,11 @@ namespace LLP
 		Miner& operator=(const Miner& miner);
 		~Miner();
 
+		bool Login(std::string strAccountName, int nTimeout);
 		void SetChannel(unsigned int nChannel);
-		
+
+		Core::PoolWork* WaitWorkUpdate(int nTimeout = 30);
+		Core::PoolWork* RequestWork(int nTimeout = 30);
 		Core::CBlock* GetBlock(int nTimeout = 30);
 		unsigned int GetHeight(int nTimeout = 30);
 		unsigned char SubmitBlock(uint512 hashMerkleRoot, unsigned long long nNonce, int nTimeout = 30);

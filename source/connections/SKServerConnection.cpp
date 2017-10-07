@@ -42,10 +42,11 @@ SKServerConnection& SKServerConnection::operator=(const SKServerConnection& serv
 	return *this;
 }
 
-SKServerConnection::SKServerConnection(std::vector<GPUData*> gpus, std::string ip, std::string port, int nMaxTimeout)
+SKServerConnection::SKServerConnection(std::vector<GPUData*> gpus, std::string ip, std::string port, std::string login, int nMaxTimeout)
 {
 	this->m_szIP = ip;
 	this->m_szPORT = port;
+	this->m_szLogin = login;
 
 	m_thTHREAD = boost::thread(&SKServerConnection::ServerThread, this);
 
@@ -133,21 +134,47 @@ void SKServerConnection::ServerThread()
 
 		try
 		{
-			/** Run this thread at 1 Cycle per Second. **/
-			Sleep(1000);
+
+			Core::PoolWork *pWork = 0;
 
 			/** Attempt with best efforts to keep the Connection Alive. **/
 			if (!m_pCLIENT->Connected() || m_pCLIENT->Errors())
 			{
-				if (!m_pCLIENT->Connect())
+				try
+				{
+					if (!m_pCLIENT->Connect())
+						throw;
+					else
+					{
+						if (m_pCLIENT->Login(m_szLogin, 5))
+						{
+							printf("Logged In Successfully...\n");
+						}
+						else
+						{
+							printf("Failed to Log In...\n");
+							m_pCLIENT->Disconnect();
+							throw;
+						}
+						//m_pCLIENT->SetChannel(2);
+					}
+				}
+				catch (...)
+				{
+					Sleep(1000);
 					continue;
-
-				/** Send to the server the Channel we will be Mining For. **/
-				else
-					m_pCLIENT->SetChannel(2);
+				}
+				
+			}
+			else {
+				if (pWork = m_pCLIENT->WaitWorkUpdate(1))
+				{
+					ResetThreads();
+				}
 			}
 
-			/** Check the Block Height. **/
+			
+			/*
 			unsigned int nHeight = m_pCLIENT->GetHeight(5);
 			if (nHeight == 0)
 			{
@@ -156,15 +183,15 @@ void SKServerConnection::ServerThread()
 				continue;
 			}
 
-			/** If there is a new block, Flag the Threads to Stop Mining. **/
+			
 			if (nHeight != nBestHeight)
 			{
 				nBestHeight = nHeight;
 				printf("[MASTER] Coinshield Network | New Block %u\n", nHeight);
 
-				ResetThreads();
+				//ResetThreads();
 			}
-
+			*/
 
 			/** Rudimentary Meter **/
 			if (m_tTIMER.Elapsed() > 10)
@@ -172,8 +199,8 @@ void SKServerConnection::ServerThread()
 				unsigned int nElapsed = m_tTIMER.ElapsedMilliseconds();
 				unsigned int nHashes = Hashes();
 
-				double KHASH = (double)nHashes / nElapsed;
-				printf("[METERS] %u Hashes | %f KHash/s | Height = %u\n", nHashes, KHASH, nBestHeight);
+				double KHASH = (double)nHashes / nElapsed / 1000;
+				printf("[METERS] %u Hashes | %f MHash/s | Height %u\n", nHashes, KHASH, nBestHeight);
 
 				m_tTIMER.Reset();
 			}
@@ -196,7 +223,8 @@ void SKServerConnection::ServerThread()
 				if (m_vecTHREADS[nIndex]->GetIsNewBlock())
 				{
 					/** Delete the Block Pointer if it Exists. **/
-					 Core::CBlock* pBlock = m_vecTHREADS[nIndex]->GetMinerData()->GetBlock();
+					Core::CBlock* pBlock = m_vecTHREADS[nIndex]->GetMinerData()->GetBlock();
+
 					if (pBlock != NULL)
 					{
 						delete(pBlock);
@@ -204,14 +232,28 @@ void SKServerConnection::ServerThread()
 					}
 
 					/** Retrieve new block from Server. **/
-					pBlock = m_pCLIENT->GetBlock(5);
+					if(!pWork)
+						pWork = m_pCLIENT->RequestWork(5);
 
 					/** If the block is good, tell the Mining Thread its okay to Mine. **/
-					if (pBlock)
+					if (pWork)
 					{
+						pBlock = pWork->m_pBLOCK;
 						m_vecTHREADS[nIndex]->SetIsNewBlock(false);
 						m_vecTHREADS[nIndex]->SetIsBlockFound(false);
+						m_vecTHREADS[nIndex]->GetMinerData()->SetBits(pWork->m_unBits);
 						m_vecTHREADS[nIndex]->GetMinerData()->SetBlock(pBlock);
+
+						nBestHeight = m_vecTHREADS[nIndex]->GetMinerData()->GetBlock()->GetHeight();
+
+						printf("=================================\n"
+							"Miner data updated\nheight: %u\ndiff: %f\n"
+							"=================================\n",
+							m_vecTHREADS[nIndex]->GetMinerData()->GetBlock()->GetHeight(),
+							Core::GetDifficulty(m_vecTHREADS[nIndex]->GetMinerData()->GetBits()));
+
+						delete pWork;
+						pWork = 0;
 					}
 					/** If the Block didn't come in properly, Reconnect to the Server. **/
 					else
@@ -229,16 +271,24 @@ void SKServerConnection::ServerThread()
 					printf("[MASTER] Hash Found on Miner Thread %i\n", nIndex);
 
 					unsigned long long truc = m_vecTHREADS[nIndex]->GetMinerData()->GetBlock()->GetNonce();
-					printf("[MASTER] nonce %08x %08x\n", (uint32_t)(truc >> 32)), (uint32_t)(truc & 0xFFFFFFFFULL);
+					printf("[MASTER] nonce %08x %08x\n", (uint32_t)(truc >> 32), (uint32_t)(truc & 0xFFFFFFFFULL));
+
+					Core::CBlock* pBlock = m_vecTHREADS[nIndex]->GetMinerData()->GetBlock();
+
+					pBlock->SetNonce(truc + 1);
+
+					m_vecTHREADS[nIndex]->GetMinerData()->SetBlock(pBlock);
 
 					/** Check the Response from the Server.**/
 					if (RESPONSE == 200)
 					{
-						printf("[MASTER] Block Accepted By Coinshield Network.\n");
+						printf("[MASTER] Share Accepted By Pool.\n");
+
+						m_vecTHREADS[nIndex]->SetIsBlockFound(false);
 					}
 					else if (RESPONSE == 201)
 					{
-						printf("[MASTER] Block Rejected by Coinshield Network.\n");
+						printf("[MASTER] Share Rejected by Pool.\n");
 
 						m_vecTHREADS[nIndex]->SetIsNewBlock(true);
 						m_vecTHREADS[nIndex]->SetIsBlockFound(false);
@@ -246,7 +296,7 @@ void SKServerConnection::ServerThread()
 					/** If the Response was Incomplete, Reconnect to Server and try to Submit Block Again. **/
 					else
 					{
-						printf("[MASTER] Failure to Submit Block. Reconnecting...\n");
+						printf("[MASTER] Failure to Submit Share. Reconnecting...\n");
 						m_pCLIENT->Disconnect();
 					}
 

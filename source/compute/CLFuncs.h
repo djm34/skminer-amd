@@ -21,4 +21,6 @@ GPUData* CreateNewOpenCLDevice(GPUData* pMainGPUThread);
 
 void SetThreadConcurrency(GPUData* pGPU);
 
+#pragma comment(lib, "OpenCL.lib")
+
 #endif //CL_FUNS_H_

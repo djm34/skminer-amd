@@ -18,6 +18,38 @@
 
 namespace Core
 {
+	double GetDifficulty(unsigned int nBits, int nChannel)
+	{
+		/** Prime Channel is just Decimal Held in Integer
+		Multiplied and Divided by Significant Digits. **/
+		if (nChannel == 1)
+			return nBits / 10000000.0;
+
+		/** Get the Proportion of the Bits First. **/
+		double dDiff =
+			(double)0x0000ffff / (double)(nBits & 0x00ffffff);
+
+		/** Calculate where on Compact Scale Difficulty is. **/
+		int nShift = nBits >> 24;
+
+		/** Shift down if Position on Compact Scale is above 124. **/
+		while (nShift > 124)
+		{
+			dDiff = dDiff / 256.0;
+			nShift--;
+		}
+
+		/** Shift up if Position on Compact Scale is below 124. **/
+		while (nShift < 124)
+		{
+			dDiff = dDiff * 256.0;
+			nShift++;
+		}
+
+		/** Offset the number by 64 to give larger starting reference. **/
+		return dDiff * ((nChannel == 2) ? 64 : 1024 * 1024 * 256);
+	}
+
 	CBlock::CBlock()
 	{
 		this->m_unVersion		= 0;
