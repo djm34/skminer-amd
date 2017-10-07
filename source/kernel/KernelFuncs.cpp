@@ -199,6 +199,8 @@ bool sk1024_kernel_djm2(MinerData* pMinerData)
 
 	bool isFound = false;
 
+	//hashes += (uint32_t)globalSize;
+
 	if (TheNonce[0])
 	{
 		hashes = TheNonce[0] - ((uint64_t*)nNonce)[0];
