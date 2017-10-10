@@ -242,3 +242,7 @@ ModelManifest.xml
 .fake/
 *.exe
 /resources/ui/scripts
+/ssleay32.dll
+/SKMiner-master.zip
+/libssl32.dll
+/libeay32.dll

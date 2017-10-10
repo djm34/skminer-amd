@@ -45,8 +45,6 @@ namespace LLP
 		PACKET->SetHeader(LOGIN);
 
 		PACKET->SetData(std::vector<unsigned char>(strAccountName.begin(), strAccountName.end()));
-
-
 		PACKET->SetLength(PACKET->GetData().size());
 
 		this->WritePacket(PACKET);
