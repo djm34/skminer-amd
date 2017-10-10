@@ -149,6 +149,8 @@ void SKServerConnection::ServerThread()
 						if (m_pCLIENT->Login(m_szLogin, 5))
 						{
 							printf("Logged In Successfully...\n");
+							if (pWork = m_pCLIENT->WaitWorkUpdate(1))
+								ResetThreads();
 						}
 						else
 						{
@@ -168,9 +170,7 @@ void SKServerConnection::ServerThread()
 			}
 			else {
 				if (pWork = m_pCLIENT->WaitWorkUpdate(1))
-				{
 					ResetThreads();
-				}
 			}
 
 			
