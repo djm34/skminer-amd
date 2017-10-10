@@ -140,6 +140,7 @@ void SKServerConnection::ServerThread()
 			/** Attempt with best efforts to keep the Connection Alive. **/
 			if (!m_pCLIENT->Connected() || m_pCLIENT->Errors())
 			{
+				ResetThreads();
 				try
 				{
 					if (!m_pCLIENT->Connect())
@@ -149,8 +150,7 @@ void SKServerConnection::ServerThread()
 						if (m_pCLIENT->Login(m_szLogin, 5))
 						{
 							printf("Logged In Successfully...\n");
-							if (pWork = m_pCLIENT->WaitWorkUpdate(1))
-								ResetThreads();
+							pWork = m_pCLIENT->WaitWorkUpdate(1);
 						}
 						else
 						{
