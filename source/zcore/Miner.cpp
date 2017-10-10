@@ -72,6 +72,27 @@ namespace LLP
 		delete(packet);
 	}
 
+	bool Miner::Ping(int nTimeout)
+	{
+		Packet* packet = new Packet();
+		packet->SetHeader(PING);
+
+		this->WritePacket(packet);
+
+		delete(packet);
+
+
+		Packet RESPONSE = ReadNextPacket(nTimeout);
+
+		if (RESPONSE.IsNull())
+			return NULL;
+
+		if(RESPONSE.GetHeader() == PING)
+			ResetPacket();
+
+		return true;
+	}
+
 	Core::PoolWork *Miner::WaitWorkUpdate(int nTimeout)
 	{
 		Packet RESPONSE = ReadNextPacket(nTimeout);

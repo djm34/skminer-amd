@@ -72,6 +72,7 @@ namespace LLP
 		bool Login(std::string strAccountName, int nTimeout);
 		void SetChannel(unsigned int nChannel);
 
+		bool Ping(int nTimeout = 30);
 		Core::PoolWork* WaitWorkUpdate(int nTimeout = 30);
 		Core::PoolWork* RequestWork(int nTimeout = 30);
 		Core::CBlock* GetBlock(int nTimeout = 30);

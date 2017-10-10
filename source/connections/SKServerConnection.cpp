@@ -163,7 +163,7 @@ void SKServerConnection::ServerThread()
 				}
 				catch (...)
 				{
-					Sleep(1000);
+					Sleep(5000);
 					continue;
 				}
 				
@@ -172,26 +172,6 @@ void SKServerConnection::ServerThread()
 				if (pWork = m_pCLIENT->WaitWorkUpdate(1))
 					ResetThreads();
 			}
-
-			
-			/*
-			unsigned int nHeight = m_pCLIENT->GetHeight(5);
-			if (nHeight == 0)
-			{
-				printf("Failed to Update Height...\n");
-				m_pCLIENT->Disconnect();
-				continue;
-			}
-
-			
-			if (nHeight != nBestHeight)
-			{
-				nBestHeight = nHeight;
-				printf("[MASTER] Coinshield Network | New Block %u\n", nHeight);
-
-				//ResetThreads();
-			}
-			*/
 
 			/** Rudimentary Meter **/
 			if (m_tTIMER.Elapsed() > 10)
@@ -203,6 +183,13 @@ void SKServerConnection::ServerThread()
 				printf("[METERS] %u Hashes | %f MHash/s | Height %u\n", nHashes, KHASH, nBestHeight);
 
 				m_tTIMER.Reset();
+
+				if (!m_pCLIENT->Ping(5))
+				{
+					printf("Connection lost, reconnecting...\n");
+					m_pCLIENT->Disconnect();
+					throw;
+				}
 			}
 
 
