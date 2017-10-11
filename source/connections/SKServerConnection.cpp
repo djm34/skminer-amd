@@ -144,7 +144,7 @@ void SKServerConnection::ServerThread()
 				try
 				{
 					if (!m_pCLIENT->Connect())
-						throw;
+						throw std::runtime_error("Failed to reconnect, retrying...");
 					else
 					{
 						if (m_pCLIENT->Login(m_szLogin, 5))
@@ -154,14 +154,13 @@ void SKServerConnection::ServerThread()
 						}
 						else
 						{
-							printf("Failed to Log In...\n");
 							m_pCLIENT->Disconnect();
-							throw;
+							throw std::runtime_error("Failed to Log In...");
 						}
 						//m_pCLIENT->SetChannel(2);
 					}
 				}
-				catch (...)
+				catch (std::exception &e)
 				{
 					Sleep(5000);
 					continue;
