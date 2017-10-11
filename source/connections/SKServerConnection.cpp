@@ -187,7 +187,7 @@ void SKServerConnection::ServerThread()
 				{
 					printf("Connection lost, reconnecting...\n");
 					m_pCLIENT->Disconnect();
-					throw;
+					continue;
 				}
 			}
 
