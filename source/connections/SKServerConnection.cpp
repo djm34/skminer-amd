@@ -168,6 +168,8 @@ void SKServerConnection::ServerThread()
 				
 			}
 			else {
+				Sleep(1000);
+
 				if (pWork = m_pCLIENT->WaitWorkUpdate(1))
 					ResetThreads();
 			}
