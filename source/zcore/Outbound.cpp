@@ -97,6 +97,8 @@ namespace LLP
 
 	void Outbound::Disconnect()
 	{
+		ResetPacket();
+
 		if (!CONNECTED)
 			return;
 

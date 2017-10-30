@@ -155,9 +155,9 @@ void SKServerConnection::ServerThread()
 						else
 						{
 							m_pCLIENT->Disconnect();
+							printf("Failed to Log In...\n");
 							throw std::runtime_error("Failed to Log In...");
 						}
-						//m_pCLIENT->SetChannel(2);
 					}
 				}
 				catch (std::exception &e)
