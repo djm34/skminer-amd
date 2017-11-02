@@ -181,7 +181,7 @@ namespace LLP
 
 	size_t Connection::Read(std::vector<unsigned char> &DATA, size_t nBytes) 
 	{ 
-		TIMER->Reset(); return  boost::asio::read(*SOCKET->get(), boost::asio::buffer(DATA, nBytes), ERROR_HANDLE); 
+		TIMER->Reset(); return boost::asio::read(*SOCKET->get(), boost::asio::buffer(DATA, nBytes), ERROR_HANDLE); 
 	}
 
 	void Connection::Write(std::vector<unsigned char> DATA) 

@@ -24,7 +24,7 @@ public:
 
 	SKServerConnection();
 	SKServerConnection(const SKServerConnection& skServerConnection);
-	SKServerConnection(std::vector<GPUData*> gpus, std::string ip, std::string port, int nMaxTimeout = 30);
+	SKServerConnection(std::vector<GPUData*> gpus, std::string ip, std::string port, std::string login, int nMaxTimeout = 30);
 	SKServerConnection& operator=(const SKServerConnection& serverConnection);
 	~SKServerConnection();
 

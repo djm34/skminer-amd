@@ -32,6 +32,14 @@
 #include "../config/ConfigConnection.h"
 #include <jansson.h>
 
+#ifndef _DEBUG
+#pragma comment(lib, "libeay32MT.lib")
+#pragma comment(lib, "ssleay32MT.lib")
+#else
+#pragma comment(lib, "libeay32.lib")
+#pragma comment(lib, "ssleay32.lib")
+#endif
+
 #define VERSION 1.0
 
 class ADL;

@@ -65,12 +65,19 @@ SKMinerThread::~SKMinerThread()
 
 void SKMinerThread::Initialize()
 {
-	//Initialize the OpenCL Memory Buffers for use in the Kernel
+	////////////////////////////
 
 	cl_int error = CL_SUCCESS;
 
 	CLDevice* pDevice = (CLDevice*)((SKMinerData*)m_pMinerData)->GetGPUData()->GetDevice();
-	CLKernel* pKernel = pDevice->GetKernel("sk1024");
+	
+	std::string strKernelName = "sk1024";
+#ifdef _WIN32
+	//force terminating null byte. otherwise fails to find kernel on windows
+	strKernelName.resize(7);
+#endif
+
+	CLKernel* pKernel = pDevice->GetKernel(strKernelName);
 
 	cl_context TheContext = pDevice->GetContext()();
 
@@ -132,7 +139,7 @@ void SKMinerThread::Miner()
 			}
 
 			/** Set the Target from nBits. **/	
-			((SKMinerData*)m_pMinerData)->GetTarget()->SetCompact(m_pMinerData->GetBlock()->GetBits());
+			((SKMinerData*)m_pMinerData)->GetTarget()->SetCompact(m_pMinerData->GetBits());
 
 			while (!m_bNewBlock && !m_bShutown)
 			{

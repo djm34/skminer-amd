@@ -93,7 +93,9 @@ public:
 	const cl::Device&			GetDeviceID()							const						{	return this->m_clDevice;									}
 	const cl::Platform&			GetPlatform()							const						{	return this->m_clPlatform;									}		
 	const cl::Context&		    GetContext()							const		    		    {	return this->m_clContext;									}
-	CLKernel*					GetKernel(const std::string& szKernel)								{   return this->m_mapKernels[szKernel];						}
+	CLKernel*					GetKernel(const std::string& szKernel)								{   
+		return this->m_mapKernels[szKernel];						
+	}
 	const std::map<std::string, CLKernel*> GetKernels()					const						{	return this->m_mapKernels;									}
 	const cl::CommandQueue&		GetCommandQueue()						const						{	return this->m_commandQueue;								}
 

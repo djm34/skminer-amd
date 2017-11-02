@@ -90,7 +90,12 @@ void Application::Initialize(std::map<std::string,std::string> arguments)
 
 		std::cout << "SKMiner for AMD GPUs" << std::endl;
 
-		ServerConnection* pConnection = new SKServerConnection(m_vecGPUData,TheIP,ThePort);
+		std::string TheLogin = mapOptions["--connections"];
+		pos = TheLogin.find(" user ");
+		TheLogin = TheLogin.substr(pos + strlen(" user "), TheLogin.size());
+		TheLogin = TheLogin.substr(0, TheLogin.find(" "));
+
+		ServerConnection* pConnection = new SKServerConnection(m_vecGPUData, TheIP, ThePort, TheLogin);
 
 		m_vecServerConnections.push_back(pConnection);
 	}

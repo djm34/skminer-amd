@@ -15,6 +15,7 @@
 
 MinerData::MinerData()
 {
+	this->m_unBits = NULL;
 	this->m_pBLOCK = NULL;
 	this->m_pGPUData = NULL;
 }

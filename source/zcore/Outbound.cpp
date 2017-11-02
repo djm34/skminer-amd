@@ -47,7 +47,7 @@ namespace LLP
 			ReadPacket();
 			if(Timeout(nTimeout) || Errors()) { return NULL_PACKET; }
 			
-			Sleep(1);
+			Sleep(10);
 		}
 			
 		return *this->INCOMING;
@@ -97,6 +97,8 @@ namespace LLP
 
 	void Outbound::Disconnect()
 	{
+		ResetPacket();
+
 		if (!CONNECTED)
 			return;
 
